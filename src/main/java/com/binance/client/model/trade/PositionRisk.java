@@ -134,6 +134,7 @@ public class PositionRisk {
                 .append("liquidationPrice", liquidationPrice).append("markPrice", markPrice)
                 .append("positionAmt", positionAmt).append("symbol", symbol)
                 .append("unrealizedProfit", unrealizedProfit).append("isolatedMargin", isolatedMargin)
-                .append("positionSide", positionSide).append("marginType", marginType).toString();
+                .append("positionSide", positionSide).append("marginType", marginType)
+                .append("notional", notional).toString();
     }
 }
