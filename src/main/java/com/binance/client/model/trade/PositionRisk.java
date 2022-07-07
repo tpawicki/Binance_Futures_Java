@@ -29,6 +29,8 @@ public class PositionRisk {
 
     private BigDecimal unrealizedProfit;
 
+    private BigDecimal notional;
+
     public BigDecimal getEntryPrice() {
         return entryPrice;
     }
@@ -115,6 +117,14 @@ public class PositionRisk {
 
     public void setMarginType(String marginType) {
         this.marginType = marginType;
+    }
+
+    public BigDecimal getNotional() {
+        return notional;
+    }
+
+    public void setNotional(BigDecimal notional) {
+        this.notional = notional;
     }
 
     @Override
