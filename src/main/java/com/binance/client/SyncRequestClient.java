@@ -62,6 +62,8 @@ public interface SyncRequestClient {
      */
     ExchangeInformation getExchangeInformation();
 
+    Long getServerTime();
+
     /**
      * Fetch order book.
      *

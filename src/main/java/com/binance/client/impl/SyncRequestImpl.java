@@ -22,6 +22,11 @@ public class SyncRequestImpl implements SyncRequestClient {
     public ExchangeInformation getExchangeInformation() {
         return RestApiInvoker.callSync(requestImpl.getExchangeInformation());
     }
+
+    @Override
+    public Long getServerTime() {
+        return RestApiInvoker.callSync(requestImpl.getServerTime());
+    }
     
     @Override
     public OrderBook getOrderBook(String symbol, Integer limit) {

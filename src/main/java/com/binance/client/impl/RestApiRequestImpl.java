@@ -221,6 +221,14 @@ class RestApiRequestImpl {
         return request;
     }
 
+    RestApiRequest<Long> getServerTime() {
+        RestApiRequest<Long> request = new RestApiRequest<>();
+        UrlParamsBuilder builder = UrlParamsBuilder.build();
+        request.request = createRequestByGet("/fapi/v1/time", builder);
+        request.jsonParser = (jsonWrapper -> jsonWrapper.getLong("serverTime"));
+        return request;
+    }
+
     RestApiRequest<OrderBook> getOrderBook(String symbol, Integer limit) {
         RestApiRequest<OrderBook> request = new RestApiRequest<>();
         UrlParamsBuilder builder = UrlParamsBuilder.build()
@@ -1011,6 +1019,7 @@ class RestApiRequestImpl {
                 element.setEntryPrice(item.getString("entryPrice"));
                 element.setMaxNotional(item.getString("maxNotional"));
                 element.setPositionSide(item.getString("positionSide"));
+                element.setPositionAmt(item.getBigDecimal("positionAmt"));
                 positionList.add(element);
             });
             result.setPositions(positionList);
