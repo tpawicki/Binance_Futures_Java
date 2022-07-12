@@ -4,21 +4,26 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.binance.client.model.enums.CandlestickInterval;
 
+import java.util.regex.Pattern;
+
 public abstract class Channels {
 
     public static final String OP_SUB = "sub";
     public static final String OP_REQ = "req";
 
     public static String aggregateTradeChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@aggTrade");
+        for (String s : symbols) {
+            params.add(s + "@aggTrade");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String markPriceChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -28,7 +33,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String candlestickChannel(String symbol, CandlestickInterval interval) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -38,7 +43,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String miniTickerChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -48,7 +53,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String miniTickerChannel() {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -58,7 +63,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String tickerChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -68,7 +73,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String tickerChannel() {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -78,7 +83,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String bookTickerChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -88,7 +93,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String bookTickerChannel() {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -98,7 +103,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String liquidationOrderChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -108,7 +113,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String liquidationOrderChannel() {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -118,7 +123,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String bookDepthChannel(String symbol, Integer limit) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -128,7 +133,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String diffDepthChannel(String symbol) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -138,7 +143,7 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
     public static String userDataChannel(String listenKey) {
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
@@ -148,5 +153,5 @@ public abstract class Channels {
         json.put("method", "SUBSCRIBE");
         return json.toJSONString();
     }
-  
+
 }
