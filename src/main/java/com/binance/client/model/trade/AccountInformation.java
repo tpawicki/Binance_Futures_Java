@@ -32,6 +32,8 @@ public class AccountInformation {
 
     private BigDecimal totalWalletBalance;
 
+    private BigDecimal availableBalance;
+
     private Long updateTime;
 
     private List<Asset> assets;
@@ -156,6 +158,14 @@ public class AccountInformation {
 
     public void setPositions(List<Position> positions) {
         this.positions = positions;
+    }
+
+    public BigDecimal getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
     }
 
     @Override

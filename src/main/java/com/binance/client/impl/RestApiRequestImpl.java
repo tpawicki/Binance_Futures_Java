@@ -967,7 +967,7 @@ class RestApiRequestImpl {
     RestApiRequest<AccountInformation> getAccountInformation() {
         RestApiRequest<AccountInformation> request = new RestApiRequest<>();
         UrlParamsBuilder builder = UrlParamsBuilder.build();
-        request.request = createRequestByGetWithSignature("/fapi/v1/account", builder);
+        request.request = createRequestByGetWithSignature("/fapi/v2/account", builder);
 
         request.jsonParser = (jsonWrapper -> {
             AccountInformation result = new AccountInformation();
@@ -983,6 +983,7 @@ class RestApiRequestImpl {
             result.setTotalPositionInitialMargin(jsonWrapper.getBigDecimal("totalPositionInitialMargin"));
             result.setTotalUnrealizedProfit(jsonWrapper.getBigDecimal("totalUnrealizedProfit"));
             result.setTotalWalletBalance(jsonWrapper.getBigDecimal("totalWalletBalance"));
+            result.setAvailableBalance(jsonWrapper.getBigDecimal("availableBalance"));
             result.setUpdateTime(jsonWrapper.getLong("updateTime"));
 
             List<Asset> assetList = new LinkedList<>();
