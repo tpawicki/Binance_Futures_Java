@@ -104,6 +104,7 @@ public class Asset {
                 .append("marginBalance", marginBalance).append("maxWithdrawAmount", maxWithdrawAmount)
                 .append("openOrderInitialMargin", openOrderInitialMargin)
                 .append("positionInitialMargin", positionInitialMargin).append("unrealizedProfit", unrealizedProfit)
+                .append("availableBalance", availableBalance)
                 .toString();
     }
 }
