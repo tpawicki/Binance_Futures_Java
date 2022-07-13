@@ -983,7 +983,6 @@ class RestApiRequestImpl {
             result.setTotalPositionInitialMargin(jsonWrapper.getBigDecimal("totalPositionInitialMargin"));
             result.setTotalUnrealizedProfit(jsonWrapper.getBigDecimal("totalUnrealizedProfit"));
             result.setTotalWalletBalance(jsonWrapper.getBigDecimal("totalWalletBalance"));
-            result.setAvailableBalance(jsonWrapper.getBigDecimal("availableBalance"));
             result.setUpdateTime(jsonWrapper.getLong("updateTime"));
 
             List<Asset> assetList = new LinkedList<>();
@@ -998,6 +997,7 @@ class RestApiRequestImpl {
                 element.setOpenOrderInitialMargin(item.getBigDecimal("openOrderInitialMargin"));
                 element.setPositionInitialMargin(item.getBigDecimal("positionInitialMargin"));
                 element.setUnrealizedProfit(item.getBigDecimal("unrealizedProfit"));
+                element.setAvailableBalance(item.getBigDecimal("availableBalance"));
                 assetList.add(element);
             });
             result.setAssets(assetList);

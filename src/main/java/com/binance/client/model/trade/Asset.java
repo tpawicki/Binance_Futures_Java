@@ -23,6 +23,8 @@ public class Asset {
 
     private BigDecimal unrealizedProfit;
 
+    private BigDecimal  availableBalance;
+
     public String getAsset() {
         return asset;
     }
@@ -85,6 +87,14 @@ public class Asset {
 
     public void setUnrealizedProfit(BigDecimal unrealizedProfit) {
         this.unrealizedProfit = unrealizedProfit;
+    }
+
+    public BigDecimal getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
     }
 
     @Override
