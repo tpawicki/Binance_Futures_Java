@@ -25,9 +25,12 @@ public abstract class Channels {
     }
 
     public static String markPriceChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@markPrice");
+        for (String s : symbols) {
+            params.add(s + "@markPrice");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -35,9 +38,12 @@ public abstract class Channels {
     }
 
     public static String candlestickChannel(String symbol, CandlestickInterval interval) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@kline_" + interval);
+        for (String s : symbols) {
+            params.add(s + "@kline_" + interval);
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -45,9 +51,12 @@ public abstract class Channels {
     }
 
     public static String miniTickerChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@miniTicker");
+        for (String s : symbols) {
+            params.add(s + "@miniTicker");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -65,9 +74,12 @@ public abstract class Channels {
     }
 
     public static String tickerChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@ticker");
+        for (String s : symbols) {
+            params.add(s + "@ticker");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -85,9 +97,12 @@ public abstract class Channels {
     }
 
     public static String bookTickerChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@bookTicker");
+        for (String s : symbols) {
+            params.add(s + "@bookTicker");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -105,9 +120,12 @@ public abstract class Channels {
     }
 
     public static String liquidationOrderChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@forceOrder");
+        for (String s : symbols) {
+            params.add(s + "@forceOrder");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -125,9 +143,12 @@ public abstract class Channels {
     }
 
     public static String bookDepthChannel(String symbol, Integer limit) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@depth" + limit);
+        for (String s : symbols) {
+            params.add(s + "@depth" + limit);
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
@@ -135,9 +156,12 @@ public abstract class Channels {
     }
 
     public static String diffDepthChannel(String symbol) {
+        String[] symbols = symbol.split(Pattern.quote(","));
         JSONObject json = new JSONObject();
         JSONArray params = new JSONArray();
-        params.add(symbol + "@depth");
+        for (String s : symbols) {
+            params.add(s + "@depth");
+        }
         json.put("params", params);
         json.put("id", System.currentTimeMillis());
         json.put("method", "SUBSCRIBE");
