@@ -947,7 +947,7 @@ class RestApiRequestImpl {
     RestApiRequest<List<AccountBalance>> getBalance() {
         RestApiRequest<List<AccountBalance>> request = new RestApiRequest<>();
         UrlParamsBuilder builder = UrlParamsBuilder.build();
-        request.request = createRequestByGetWithSignature("/fapi/v1/balance", builder);
+        request.request = createRequestByGetWithSignature("/fapi/v2/balance", builder);
 
         request.jsonParser = (jsonWrapper -> {
             List<AccountBalance> result = new LinkedList<>();
