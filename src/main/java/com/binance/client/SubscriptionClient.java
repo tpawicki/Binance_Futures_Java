@@ -1,18 +1,12 @@
 package com.binance.client;
 
-import java.util.List;
-
 import com.binance.client.impl.BinanceApiInternalFactory;
+import com.binance.client.impl.WebSocketConnection;
 import com.binance.client.model.enums.CandlestickInterval;
-import com.binance.client.model.event.AggregateTradeEvent;
-import com.binance.client.model.event.CandlestickEvent;
-import com.binance.client.model.event.LiquidationOrderEvent;
-import com.binance.client.model.event.MarkPriceEvent;
-import com.binance.client.model.event.OrderBookEvent;
-import com.binance.client.model.event.SymbolBookTickerEvent;
-import com.binance.client.model.event.SymbolMiniTickerEvent;
-import com.binance.client.model.event.SymbolTickerEvent;
+import com.binance.client.model.event.*;
 import com.binance.client.model.user.UserDataUpdateEvent;
+
+import java.util.List;
 
 /***
  * The subscription client interface, it is used for subscribing any market data
@@ -56,7 +50,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeAggregateTradeEvent(String symbol,
+    WebSocketConnection subscribeAggregateTradeEvent(String symbol,
             SubscriptionListener<AggregateTradeEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -69,7 +63,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeMarkPriceEvent(String symbol,
+    WebSocketConnection subscribeMarkPriceEvent(String symbol,
             SubscriptionListener<MarkPriceEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -83,7 +77,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeCandlestickEvent(String symbol, CandlestickInterval interval,
+    WebSocketConnection subscribeCandlestickEvent(String symbol, CandlestickInterval interval,
             SubscriptionListener<CandlestickEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -96,7 +90,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeSymbolMiniTickerEvent(String symbol,
+    WebSocketConnection subscribeSymbolMiniTickerEvent(String symbol,
             SubscriptionListener<SymbolMiniTickerEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -108,7 +102,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeAllMiniTickerEvent(SubscriptionListener<List<SymbolMiniTickerEvent>> callback, SubscriptionErrorHandler errorHandler);
+    WebSocketConnection subscribeAllMiniTickerEvent(SubscriptionListener<List<SymbolMiniTickerEvent>> callback, SubscriptionErrorHandler errorHandler);
 
     /**
      * Subscribe individual symbol ticker event. If the symbol ticker is updated,
@@ -120,7 +114,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeSymbolTickerEvent(String symbol,
+    WebSocketConnection subscribeSymbolTickerEvent(String symbol,
             SubscriptionListener<SymbolTickerEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -132,7 +126,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeAllTickerEvent(SubscriptionListener<List<SymbolTickerEvent>> callback, SubscriptionErrorHandler errorHandler);
+    WebSocketConnection subscribeAllTickerEvent(SubscriptionListener<List<SymbolTickerEvent>> callback, SubscriptionErrorHandler errorHandler);
 
     /**
      * Subscribe individual symbol book ticker event. If the symbol book ticker is updated,
@@ -144,7 +138,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeSymbolBookTickerEvent(String symbol,
+    WebSocketConnection subscribeSymbolBookTickerEvent(String symbol,
             SubscriptionListener<SymbolBookTickerEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -156,7 +150,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeAllBookTickerEvent(SubscriptionListener<SymbolBookTickerEvent> callback, SubscriptionErrorHandler errorHandler);
+    WebSocketConnection subscribeAllBookTickerEvent(SubscriptionListener<SymbolBookTickerEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
      * Subscribe individual symbol book ticker event. If the symbol book ticker is updated,
@@ -168,7 +162,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeSymbolLiquidationOrderEvent(String symbol,
+    WebSocketConnection subscribeSymbolLiquidationOrderEvent(String symbol,
             SubscriptionListener<LiquidationOrderEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -180,7 +174,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeAllLiquidationOrderEvent(SubscriptionListener<LiquidationOrderEvent> callback, SubscriptionErrorHandler errorHandler);
+    WebSocketConnection subscribeAllLiquidationOrderEvent(SubscriptionListener<LiquidationOrderEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
      * Subscribe partial book depth event. If the book depth is updated,
@@ -193,7 +187,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeBookDepthEvent(String symbol, Integer limit,
+    WebSocketConnection subscribeBookDepthEvent(String symbol, Integer limit,
             SubscriptionListener<OrderBookEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -206,7 +200,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeDiffDepthEvent(String symbol,
+    WebSocketConnection subscribeDiffDepthEvent(String symbol,
             SubscriptionListener<OrderBookEvent> callback, SubscriptionErrorHandler errorHandler);
 
     /**
@@ -219,7 +213,7 @@ public interface SubscriptionClient {
      * @param errorHandler The error handler will be called if subscription failed
      *                     or error happen between client and Binance server.
      */
-    void subscribeUserDataEvent(String listenKey,
+    WebSocketConnection subscribeUserDataEvent(String listenKey,
             SubscriptionListener<UserDataUpdateEvent> callback, SubscriptionErrorHandler errorHandler);
 
 
