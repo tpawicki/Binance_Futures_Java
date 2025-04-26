@@ -967,37 +967,39 @@ class RestApiRequestImpl {
     RestApiRequest<AccountInformation> getAccountInformation() {
         RestApiRequest<AccountInformation> request = new RestApiRequest<>();
         UrlParamsBuilder builder = UrlParamsBuilder.build();
-        request.request = createRequestByGetWithSignature("/fapi/v2/account", builder);
+        request.request = createRequestByGetWithSignature("/fapi/v3/account", builder);
 
         request.jsonParser = (jsonWrapper -> {
             AccountInformation result = new AccountInformation();
-            result.setCanDeposit(jsonWrapper.getBoolean("canDeposit"));
-            result.setCanTrade(jsonWrapper.getBoolean("canTrade"));
-            result.setCanWithdraw(jsonWrapper.getBoolean("canWithdraw"));
-            result.setFeeTier(jsonWrapper.getBigDecimal("feeTier"));
-            result.setMaxWithdrawAmount(jsonWrapper.getBigDecimal("maxWithdrawAmount"));
             result.setTotalInitialMargin(jsonWrapper.getBigDecimal("totalInitialMargin"));
             result.setTotalMaintMargin(jsonWrapper.getBigDecimal("totalMaintMargin"));
-            result.setTotalMarginBalance(jsonWrapper.getBigDecimal("totalMarginBalance"));
-            result.setTotalOpenOrderInitialMargin(jsonWrapper.getBigDecimal("totalOpenOrderInitialMargin"));
-            result.setTotalPositionInitialMargin(jsonWrapper.getBigDecimal("totalPositionInitialMargin"));
-            result.setTotalUnrealizedProfit(jsonWrapper.getBigDecimal("totalUnrealizedProfit"));
             result.setTotalWalletBalance(jsonWrapper.getBigDecimal("totalWalletBalance"));
-            result.setUpdateTime(jsonWrapper.getLong("updateTime"));
+            result.setTotalUnrealizedProfit(jsonWrapper.getBigDecimal("totalUnrealizedProfit"));
+            result.setTotalMarginBalance(jsonWrapper.getBigDecimal("totalMarginBalance"));
+            result.setTotalPositionInitialMargin(jsonWrapper.getBigDecimal("totalPositionInitialMargin"));
+            result.setTotalOpenOrderInitialMargin(jsonWrapper.getBigDecimal("totalOpenOrderInitialMargin"));
+            result.setTotalCrossWalletBalance(jsonWrapper.getBigDecimal("totalCrossWalletBalance"));
+            result.setTotalCrossUnPnl(jsonWrapper.getBigDecimal("totalCrossUnPnl"));
+            result.setAvailableBalance(jsonWrapper.getBigDecimal("availableBalance"));
+            result.setMaxWithdrawAmount(jsonWrapper.getBigDecimal("maxWithdrawAmount"));
 
             List<Asset> assetList = new LinkedList<>();
             JsonWrapperArray assetArray = jsonWrapper.getJsonArray("assets");
             assetArray.forEach((item) -> {
                 Asset element = new Asset();
                 element.setAsset(item.getString("asset"));
-                element.setInitialMargin(item.getBigDecimal("initialMargin"));
-                element.setMaintMargin(item.getBigDecimal("maintMargin"));
-                element.setMarginBalance(item.getBigDecimal("marginBalance"));
-                element.setMaxWithdrawAmount(item.getBigDecimal("maxWithdrawAmount"));
-                element.setOpenOrderInitialMargin(item.getBigDecimal("openOrderInitialMargin"));
-                element.setPositionInitialMargin(item.getBigDecimal("positionInitialMargin"));
+                element.setWalletBalance(item.getBigDecimal("walletBalance"));
                 element.setUnrealizedProfit(item.getBigDecimal("unrealizedProfit"));
+                element.setMarginBalance(item.getBigDecimal("marginBalance"));
+                element.setMaintMargin(item.getBigDecimal("maintMargin"));
+                element.setInitialMargin(item.getBigDecimal("initialMargin"));
+                element.setPositionInitialMargin(item.getBigDecimal("positionInitialMargin"));
+                element.setOpenOrderInitialMargin(item.getBigDecimal("openOrderInitialMargin"));
+                element.setCrossWalletBalance(item.getBigDecimal("crossWalletBalance"));
+                element.setCrossUnPnl(item.getBigDecimal("crossUnPnl"));
                 element.setAvailableBalance(item.getBigDecimal("availableBalance"));
+                element.setMaxWithdrawAmount(item.getBigDecimal("maxWithdrawAmount"));
+                element.setUpdateTime(item.getLong("updateTime"));
                 assetList.add(element);
             });
             result.setAssets(assetList);
@@ -1006,18 +1008,16 @@ class RestApiRequestImpl {
             JsonWrapperArray positionArray = jsonWrapper.getJsonArray("positions");
             positionArray.forEach((item) -> {
                 Position element = new Position();
-                element.setIsolated(item.getBoolean("isolated"));
-                element.setLeverage(item.getBigDecimal("leverage"));
-                element.setInitialMargin(item.getBigDecimal("initialMargin"));
-                element.setMaintMargin(item.getBigDecimal("maintMargin"));
-                element.setOpenOrderInitialMargin(item.getBigDecimal("openOrderInitialMargin"));
-                element.setPositionInitialMargin(item.getBigDecimal("positionInitialMargin"));
                 element.setSymbol(item.getString("symbol"));
-                element.setUnrealizedProfit(item.getBigDecimal("unrealizedProfit"));
-                element.setEntryPrice(item.getString("entryPrice"));
-                element.setMaxNotional(item.getString("maxNotional"));
                 element.setPositionSide(item.getString("positionSide"));
                 element.setPositionAmt(item.getBigDecimal("positionAmt"));
+                element.setUnrealizedProfit(item.getBigDecimal("unrealizedProfit"));
+                element.setIsolatedMargin(item.getBigDecimal("isolatedMargin"));
+                element.setNotional(item.getBigDecimal("notional"));
+                element.setIsolatedWallet(item.getBigDecimal("isolatedWallet"));
+                element.setInitialMargin(item.getBigDecimal("initialMargin"));
+                element.setMaintMargin(item.getBigDecimal("maintMargin"));
+                element.setUpdateTime(item.getLong("updateTime"));
                 positionList.add(element);
             });
             result.setPositions(positionList);

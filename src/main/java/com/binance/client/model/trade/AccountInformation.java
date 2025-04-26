@@ -3,80 +3,24 @@ package com.binance.client.model.trade;
 import com.binance.client.constant.BinanceApiConstants;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.List;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class AccountInformation {
-
-    private Boolean canDeposit;
-
-    private Boolean canTrade;
-
-    private Boolean canWithdraw;
-
-    private BigDecimal feeTier;
-
+    private BigDecimal totalInitialMargin;
+    private BigDecimal totalMaintMargin;
+    private BigDecimal totalWalletBalance;
+    private BigDecimal totalUnrealizedProfit;
+    private BigDecimal totalMarginBalance;
+    private BigDecimal totalPositionInitialMargin;
+    private BigDecimal totalOpenOrderInitialMargin;
+    private BigDecimal totalCrossWalletBalance;
+    private BigDecimal totalCrossUnPnl;
+    private BigDecimal availableBalance;
     private BigDecimal maxWithdrawAmount;
 
-    private BigDecimal totalInitialMargin;
-
-    private BigDecimal totalMaintMargin;
-
-    private BigDecimal totalMarginBalance;
-
-    private BigDecimal totalOpenOrderInitialMargin;
-
-    private BigDecimal totalPositionInitialMargin;
-
-    private BigDecimal totalUnrealizedProfit;
-
-    private BigDecimal totalWalletBalance;
-
-    private Long updateTime;
-
     private List<Asset> assets;
-
     private List<Position> positions;
-
-    public Boolean getCanDeposit() {
-        return canDeposit;
-    }
-
-    public void setCanDeposit(Boolean canDeposit) {
-        this.canDeposit = canDeposit;
-    }
-
-    public Boolean getCanTrade() {
-        return canTrade;
-    }
-
-    public void setCanTrade(Boolean canTrade) {
-        this.canTrade = canTrade;
-    }
-
-    public Boolean getCanWithdraw() {
-        return canWithdraw;
-    }
-
-    public void setCanWithdraw(Boolean canWithdraw) {
-        this.canWithdraw = canWithdraw;
-    }
-
-    public BigDecimal getFeeTier() {
-        return feeTier;
-    }
-
-    public void setFeeTier(BigDecimal feeTier) {
-        this.feeTier = feeTier;
-    }
-
-    public BigDecimal getMaxWithdrawAmount() {
-        return maxWithdrawAmount;
-    }
-
-    public void setMaxWithdrawAmount(BigDecimal maxWithdrawAmount) {
-        this.maxWithdrawAmount = maxWithdrawAmount;
-    }
 
     public BigDecimal getTotalInitialMargin() {
         return totalInitialMargin;
@@ -94,28 +38,12 @@ public class AccountInformation {
         this.totalMaintMargin = totalMaintMargin;
     }
 
-    public BigDecimal getTotalMarginBalance() {
-        return totalMarginBalance;
+    public BigDecimal getTotalWalletBalance() {
+        return totalWalletBalance;
     }
 
-    public void setTotalMarginBalance(BigDecimal totalMarginBalance) {
-        this.totalMarginBalance = totalMarginBalance;
-    }
-
-    public BigDecimal getTotalOpenOrderInitialMargin() {
-        return totalOpenOrderInitialMargin;
-    }
-
-    public void setTotalOpenOrderInitialMargin(BigDecimal totalOpenOrderInitialMargin) {
-        this.totalOpenOrderInitialMargin = totalOpenOrderInitialMargin;
-    }
-
-    public BigDecimal getTotalPositionInitialMargin() {
-        return totalPositionInitialMargin;
-    }
-
-    public void setTotalPositionInitialMargin(BigDecimal totalPositionInitialMargin) {
-        this.totalPositionInitialMargin = totalPositionInitialMargin;
+    public void setTotalWalletBalance(BigDecimal totalWalletBalance) {
+        this.totalWalletBalance = totalWalletBalance;
     }
 
     public BigDecimal getTotalUnrealizedProfit() {
@@ -126,20 +54,60 @@ public class AccountInformation {
         this.totalUnrealizedProfit = totalUnrealizedProfit;
     }
 
-    public BigDecimal getTotalWalletBalance() {
-        return totalWalletBalance;
+    public BigDecimal getTotalMarginBalance() {
+        return totalMarginBalance;
     }
 
-    public void setTotalWalletBalance(BigDecimal totalWalletBalance) {
-        this.totalWalletBalance = totalWalletBalance;
+    public void setTotalMarginBalance(BigDecimal totalMarginBalance) {
+        this.totalMarginBalance = totalMarginBalance;
     }
 
-    public Long getUpdateTime() {
-        return updateTime;
+    public BigDecimal getTotalPositionInitialMargin() {
+        return totalPositionInitialMargin;
     }
 
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
+    public void setTotalPositionInitialMargin(BigDecimal totalPositionInitialMargin) {
+        this.totalPositionInitialMargin = totalPositionInitialMargin;
+    }
+
+    public BigDecimal getTotalOpenOrderInitialMargin() {
+        return totalOpenOrderInitialMargin;
+    }
+
+    public void setTotalOpenOrderInitialMargin(BigDecimal totalOpenOrderInitialMargin) {
+        this.totalOpenOrderInitialMargin = totalOpenOrderInitialMargin;
+    }
+
+    public BigDecimal getTotalCrossWalletBalance() {
+        return totalCrossWalletBalance;
+    }
+
+    public void setTotalCrossWalletBalance(BigDecimal totalCrossWalletBalance) {
+        this.totalCrossWalletBalance = totalCrossWalletBalance;
+    }
+
+    public BigDecimal getTotalCrossUnPnl() {
+        return totalCrossUnPnl;
+    }
+
+    public void setTotalCrossUnPnl(BigDecimal totalCrossUnPnl) {
+        this.totalCrossUnPnl = totalCrossUnPnl;
+    }
+
+    public BigDecimal getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
+    }
+
+    public BigDecimal getMaxWithdrawAmount() {
+        return maxWithdrawAmount;
+    }
+
+    public void setMaxWithdrawAmount(BigDecimal maxWithdrawAmount) {
+        this.maxWithdrawAmount = maxWithdrawAmount;
     }
 
     public List<Asset> getAssets() {
@@ -160,13 +128,18 @@ public class AccountInformation {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE).append("canDeposit", canDeposit)
-                .append("canTrade", canTrade).append("canWithdraw", canWithdraw).append("feeTier", feeTier)
-                .append("maxWithdrawAmount", maxWithdrawAmount).append("totalInitialMargin", totalInitialMargin)
-                .append("totalMaintMargin", totalMaintMargin).append("totalMarginBalance", totalMarginBalance)
-                .append("totalOpenOrderInitialMargin", totalOpenOrderInitialMargin)
+        return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
+                .append("totalInitialMargin", totalInitialMargin)
+                .append("totalMaintMargin", totalMaintMargin)
+                .append("totalWalletBalance", totalWalletBalance)
+                .append("totalUnrealizedProfit", totalUnrealizedProfit)
+                .append("totalMarginBalance", totalMarginBalance)
                 .append("totalPositionInitialMargin", totalPositionInitialMargin)
-                .append("totalUnrealizedProfit", totalUnrealizedProfit).append("totalWalletBalance", totalWalletBalance)
-                .append("updateTime", updateTime).append("assets", assets).append("positions", positions).toString();
+                .append("totalOpenOrderInitialMargin", totalOpenOrderInitialMargin)
+                .append("totalCrossWalletBalance", totalCrossWalletBalance)
+                .append("totalCrossUnPnl", totalCrossUnPnl)
+                .append("availableBalance", availableBalance)
+                .append("maxWithdrawAmount", maxWithdrawAmount)
+                .append("assets", assets).append("positions", positions).toString();
     }
 }
