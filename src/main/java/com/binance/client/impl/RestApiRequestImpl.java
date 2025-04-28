@@ -630,8 +630,6 @@ class RestApiRequestImpl {
             builder.putToUrl("price", price);
         } else if (priceMatch != null) {
             builder.putToUrl("priceMatch", priceMatch);
-        } else {
-            throw new RuntimeException("no price nor priceMatch");
         }
 
         request.request = createRequestByPostWithSignature("/fapi/v1/order", builder);
