@@ -3,8 +3,8 @@ package com.binance.client.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.binance.client.SyncRequestClient;
 import com.binance.client.model.ResponseResult;
-import com.binance.client.model.market.*;
 import com.binance.client.model.enums.*;
+import com.binance.client.model.market.*;
 import com.binance.client.model.trade.*;
 
 import java.util.List;
@@ -97,6 +97,11 @@ public class SyncRequestImpl implements SyncRequestClient {
         return RestApiInvoker.callSync(requestImpl.postOrder(symbol, side, positionSide, orderType,
                 timeInForce, quantity, price, priceMatch, reduceOnly,
                 newClientOrderId, stopPrice, workingType,newOrderRespType));
+    }
+
+    @Override
+    public Order modifyOrder(Long orderId, String origClientOrderId, String symbol, OrderSide side, String quantity, String price, String priceMatch) {
+        return RestApiInvoker.callSync(requestImpl.modifyOrder(orderId, origClientOrderId, symbol, side, quantity, price, priceMatch));
     }
     
     @Override

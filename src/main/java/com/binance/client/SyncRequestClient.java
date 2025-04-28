@@ -157,6 +157,8 @@ public interface SyncRequestClient {
             TimeInForce timeInForce, String quantity, String price, String priceMatch, String reduceOnly,
             String newClientOrderId, String stopPrice, WorkingType workingType, NewOrderRespType newOrderRespType);
 
+    Order modifyOrder(Long orderId, String origClientOrderId, String symbol, OrderSide side, String quantity, String price, String priceMatch);
+
     /**
      * Cancel an active order.
      *

@@ -657,6 +657,45 @@ class RestApiRequestImpl {
         return request;
     }
 
+    RestApiRequest<Order> modifyOrder(Long orderId, String origClientOrderId, String symbol, OrderSide side, String quantity, String price, String priceMatch) {
+        RestApiRequest<Order> request = new RestApiRequest<>();
+        UrlParamsBuilder builder = UrlParamsBuilder.build()
+                .putToUrl("orderId", orderId)
+                .putToUrl("origClientOrderId", origClientOrderId)
+                .putToUrl("symbol", symbol)
+                .putToUrl("side", side)
+                .putToUrl("quantity", quantity);
+        if (price != null) {
+            builder.putToUrl("price", price);
+        } else if (priceMatch != null) {
+            builder.putToUrl("priceMatch", priceMatch);
+        }
+
+        request.request = createRequestByPutWithSignature("/fapi/v1/order", builder);
+
+        request.jsonParser = (jsonWrapper -> {
+            Order result = new Order();
+            result.setOrderId(orderId);
+            result.setClientOrderId(jsonWrapper.getString("clientOrderId"));
+            //result.setCumQuote(jsonWrapper.getBigDecimal("cumQuote"));
+            result.setExecutedQty(jsonWrapper.getBigDecimal("executedQty"));
+            result.setOrigQty(jsonWrapper.getBigDecimal("origQty"));
+            result.setPrice(jsonWrapper.getBigDecimal("price"));
+            result.setReduceOnly(jsonWrapper.getBoolean("reduceOnly"));
+            result.setSide(jsonWrapper.getString("side"));
+            result.setPositionSide(jsonWrapper.getString("positionSide"));
+            result.setStatus(jsonWrapper.getString("status"));
+            result.setStopPrice(jsonWrapper.getBigDecimal("stopPrice"));
+            result.setSymbol(jsonWrapper.getString("symbol"));
+            result.setTimeInForce(jsonWrapper.getString("timeInForce"));
+            result.setType(jsonWrapper.getString("type"));
+            result.setUpdateTime(jsonWrapper.getLong("updateTime"));
+            result.setWorkingType(jsonWrapper.getString("workingType"));
+            return result;
+        });
+        return request;
+    }
+
     RestApiRequest<ResponseResult> changePositionSide(boolean dual) {
         RestApiRequest<ResponseResult> request = new RestApiRequest<>();
         UrlParamsBuilder builder = UrlParamsBuilder.build()
