@@ -3,8 +3,8 @@ package com.binance.client;
 import com.alibaba.fastjson.JSONObject;
 import com.binance.client.impl.BinanceApiInternalFactory;
 import com.binance.client.model.ResponseResult;
-import com.binance.client.model.market.*;
 import com.binance.client.model.enums.*;
+import com.binance.client.model.market.*;
 import com.binance.client.model.trade.*;
 
 import java.util.List;
@@ -154,7 +154,7 @@ public interface SyncRequestClient {
      * @return Order.
      */
     Order postOrder(String symbol, OrderSide side, PositionSide positionSide, OrderType orderType,
-            TimeInForce timeInForce, String quantity, String price, String reduceOnly,
+            TimeInForce timeInForce, String quantity, String price, String priceMatch, String reduceOnly,
             String newClientOrderId, String stopPrice, WorkingType workingType, NewOrderRespType newOrderRespType);
 
     /**
