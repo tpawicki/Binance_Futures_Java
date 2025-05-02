@@ -1,15 +1,13 @@
 package com.binance.client.impl;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.WebSocket;
-import okhttp3.WebSocketListener;
+import com.binance.client.exception.BinanceApiException;
+import com.binance.client.impl.utils.JsonWrapper;
+import kotlin.Pair;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.binance.client.exception.BinanceApiException;
-import com.binance.client.impl.utils.JsonWrapper;
+import java.util.Iterator;
 
 abstract class RestApiInvoker {
 
@@ -53,6 +51,15 @@ abstract class RestApiInvoker {
             log.debug("Request URL " + request.request.url());
             Response response = client.newCall(request.request).execute();
             // System.out.println(response.body().string());
+
+            /*if (response != null && response.headers() != null) {
+                Iterator<Pair<String, String>> it = response.headers().iterator();
+                while (it.hasNext()) {
+                    Pair<String, String> p = it.next();
+                    System.out.println("[h]" + p.getFirst() + ":" + p.getSecond());
+                }
+            }*/
+
             if (response != null && response.body() != null) {
                 str = response.body().string();
                 response.close();
